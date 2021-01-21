@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Amazon.S3.Model;
 
 namespace Statistics
 {
