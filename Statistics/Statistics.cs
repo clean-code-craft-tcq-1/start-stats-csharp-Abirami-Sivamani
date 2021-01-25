@@ -29,4 +29,52 @@ namespace Statistics
     {
         public double average = Double.NaN, max = Double.NaN, min = Double.NaN;
     }
+    
+     public class StatsAlerter
+    {
+        private float threshold;
+        private IAlerter[] alert;
+        public StatsAlerter(float maxThreshold, IAlerter[] alerters)
+        {
+            this.threshold = maxThreshold;
+            this.alert = alerters;
+        }
+        public void checkAndAlert(List<float> numbers)
+        {
+            float max = 0.0F;
+            foreach (float num in numbers)
+            {
+                max = Math.Max(max, num);
+            }
+            if (max > threshold)
+            {
+                foreach (var alt in alert)
+                {
+                    alt.RaiseAlert();
+                }
+            }
+        }
+    }
+
+    public interface IAlerter
+    {      
+        void RaiseAlert();
+    }
+
+    public class EmailAlert : IAlerter
+    {
+        public bool emailSent;
+        public void RaiseAlert()
+        {
+            emailSent = true;
+        }
+    }
+    public class LEDAlert : IAlerter
+    {
+        public bool ledGlows;
+        public void RaiseAlert()
+        {
+            ledGlows = true;
+        }
+    }
 }
