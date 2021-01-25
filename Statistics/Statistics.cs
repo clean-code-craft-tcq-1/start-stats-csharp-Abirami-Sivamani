@@ -10,7 +10,7 @@ namespace Statistics
             //Implement statistics here
             if (numbers.Count > 0)
             {
-                double sum = 0.0, maxValue = 0.0F, minValue = 9999.99F;
+                float sum = 0.0F, maxValue = 0.0F, minValue = 9999.99F;
                 foreach(float num in numbers)
                 {
                     sum += num;
